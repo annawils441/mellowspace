@@ -1,0 +1,23 @@
+# Virtual Environment
+myenv/
+venv/
+.env
+
+# Python Cache
+__pycache__/
+*.pyc
+/__pycache__
+# Environment Variables
+.env
+
+# Flask Instance Folder
+instance/
+
+# VS Code
+.vscode/
+
+# Pytest
+.pytest_cache/
+
+# Windows
+Thumbs.db

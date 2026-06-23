@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div id="homepage-container">
+        <div class="homepage-container-child homepage-img-container">
+            <div class="homepage-img-box">
+                <img id="homepage-img" src="/static/images/alexander-grey-unsplash.jpg" alt="Image of a rainbow of sand">
+            </div>
+            <div class="homepage-img-box-2">
+                <div class="homepage-img-txt-box">
+                    <h2 id="homepage-img-txt">A space for you - made to reduce the weight of emotions, one day at a time.</h2>
+                </div>
+                <div class="homepage-btn-box">
+                    <a href="{{ url_for('main.register') }}" id="get-started-btn">Get Started</a>                
+                </div>
+            </div> 
+        </div>
+    </div>
+{% endblock %}
