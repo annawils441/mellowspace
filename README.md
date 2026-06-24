@@ -119,5 +119,5 @@ This project is currently under active development as part of my software develo
 
 ## Authors
 
-Anna Wilson
-Thomas Powell
+* Anna Wilson
+* Thomas Powell
