@@ -79,6 +79,15 @@ def load_user(user_id):
 def wellbeinglibrary():
     return render_template("wellbeing-library.html")
 
+@main.route("/copingstrategies")
+def copingstrategies():
+    return render_template("coping-strategies.html")
+
 @main.route("/mooddiary")
+@login_required
 def mooddiary():
     return render_template("mood-diary.html")
+
+@main.route("/legal")
+def legal():
+    return render_template("legal.html")

@@ -53,4 +53,50 @@
             <p class="homepage-quote-txt">“There is hope, even when your brain tells you there isn’t.”<br><b>John Green</b></p>
         </div>
     </div>
+    <div class="footer">
+        <div class="footer-left">
+            <div class="footer-left-container">
+                <div class="footer-left-container-child">
+                    <h3 class="footer-title">MellowSpace</h3>
+                </div>
+                <div class="footer-left-container-child">
+                    <p class="footer-txt">Made to reduce the weight of emotions, one day at a time.</p>
+                </div>
+                <div class="footer-left-container-child">
+                    <div class="icon-container">
+                        <div class="icon-container-child">
+                            <img class="instagram-logo" src="static/images/instagram-logo.png" alt="White instagram logo, image by pngtree.com">
+                        </div>
+                        <div class="icon-container-child">
+                            <a class="instagram-txt" href="https://www.instagram.com/mellowspaceuk">@mellowspaceuk</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-left-container-child">
+                    <div class="icon-container">
+                        <div class="icon-container-child">
+                            <img class="email-logo" src="static/images/email-logo.png" alt="White email logo, image by pngtree.com">
+                        </div>
+                        <div class="icon-container-child">
+                            <a class="email-txt" href="mailto:mellowspaceuk@gmail.com">mellowspaceuk@gmail.com</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-right">
+            <div class="footer-right-box-1">
+                <p class="footer-right-title"><b>Features</b></p>
+                <p class="footer-txt"><a href="{{ url_for('main.register') }}">Mood Tracking</a></p>
+                <p class="footer-txt"><a href="{{ url_for('main.register') }}">Gratitude Journal</a></p>
+                <p class="footer-txt"><a href="{{ url_for('main.wellbeinglibrary') }}">Wellbeing Library</a></p>
+                <p class="footer-txt"><a href="{{ url_for('main.copingstrategies') }}">Coping Strategies</a></p>
+            </div>
+            <div class="footer-right-box-2">
+                <p class="footer-right-title"><b>Support</b></p>
+                <p class="footer-txt"><a href="mailto:mellowspaceuk@gmail.com">Contact Us</a></p>
+                <p class="footer-txt""><a href="{{ url_for('main.legal') }}">Legal & Regulatory</a></p>
+            </div>
+        </div>
+    </div>
 {% endblock %}
