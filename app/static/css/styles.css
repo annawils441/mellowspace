@@ -226,3 +226,101 @@ header {
     flex-direction: column;
     gap: 1rem;
 }
+
+.register-container {
+    display: flex;
+    flex-direction: column;
+    background-color: #8b45b3;
+    border-radius: 10px;
+    color: white;
+    width: 700px;
+    height: 500px;
+    padding: 2rem;
+    margin: 2rem auto; /* Centers horizontally */
+    align-items: center;
+    gap: 12px;
+}
+
+#register-title {
+    text-align: center;
+}
+
+.register-label {
+    font-size: 20px;
+    font-weight: 300;
+    margin-bottom: 5px;
+}
+
+.register-input {
+    font-size: 20px;
+    width: 100%;
+    padding: 12px;
+    border-radius: 10px;
+    box-sizing: border-box;
+}
+
+#register-btn {
+    font-size: 16px;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.register-txt {
+    font-size: 20px;
+    padding-top: 5px;
+}
+.register-txt a {
+    text-decoration: underline;
+    color: white;
+}
+
+#register-btn {
+    text-align: center;
+    margin-top: 5px;
+}
+
+.register-btn-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1rem;
+}
+
+.checkbox-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+
+#terms,
+#privacy {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+}
+
+.password-container {
+    position: relative;
+    width: 100%;
+}
+
+.register-input {
+    width: 100%;
+    padding: 12px 45px 12px 12px; /* extra right padding for eye */
+    box-sizing: border-box;
+}
+
+.eye-btn {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-size: 18px;
+    padding: 0;
+}

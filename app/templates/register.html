@@ -1,27 +1,60 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>Sign-Up</h1>
-<form method="POST">
-    {{ form.hidden_tag() }}
-    <p>
-        {{ form.username.label }}
-        {{ form.username() }}
-    </p>
-    <p>
-        {{ form.email.label }}
-        {{ form.email() }}
-    </p>
-    <p>
-        {{ form.password.label }}
-        {{ form.password() }}
-    </p>
-    <p>
-        {{ form.confirm_password.label }}
-        {{ form.confirm_password() }}
-    </p>
-    <p>
-        {{ form.submit() }}
-    </p>
-</form>
+<div class="register-container">
+    <h1 id="register-title">Register</h1>
+    <form method="POST">
+        {{ form.hidden_tag() }}
+        <p class="register-label">
+            {{ form.username.label }}
+        </p>
+        <p>
+            {{ form.username(class="register-input") }}
+        </p>
+        <p class="register-label">
+            {{ form.email.label }}
+        </p>
+        <p>
+            {{ form.email(class="register-input") }}
+        </p>
+        <p class="register-label">
+            {{ form.password.label }}
+        </p>
+        <div class="password-container">
+            {{ form.password(class="register-input", id="password") }}
+            <button type="button" class="eye-btn" onclick="togglePassword('password', this)">👁️</button>
+        </div>
+        <p class="register-label">
+            {{ form.confirm_password.label }}
+        </p>
+        <div class="password-container">
+            {{ form.confirm_password(class="register-input", id="confirm_password") }}
+            <button type="button" class="eye-btn" onclick="togglePassword('confirm_password'), this">👁️</button>
+        </div>
+        <div class="checkbox-row">
+    <input type="checkbox" name="privacy" id="privacy" onchange="validateCheckboxes()">
+    <label for="privacy" class="register-txt">
+        I have read and accept the
+        <a target="_blank" href="https://www.webpagetest.org/blank.html">
+            <u>Privacy Policy.</u>
+        </a>
+    </label>
+</div>
+<div class="checkbox-row">
+    <input type="checkbox" name="terms" id="terms" onchange="validateCheckboxes()">
+    <label for="terms" class="register-txt">
+        I have read and accept the 
+        <a target="_blank" href="https://www.webpagetest.org/blank.html">
+            <u>Terms and Conditions.</u>
+        </a>
+    </label>
+</div>
+        <div class="register-btn-container">
+            <p class="register-btn" >
+                {{ form.submit(id="register-btn", disabled=True) }}
+            </p>
+        </div>
+    </form>
+</div>
+
 {% endblock %}
