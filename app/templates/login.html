@@ -1,19 +1,27 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>Login</h1>
-<form method="POST">
-    {{ form.hidden_tag() }}
-    <p>
-        {{ form.email.label }}
-        {{ form.email() }}
-    </p>
-    <p>
-        {{ form.password.label }}
-        {{ form.password() }}
-    </p>
-    <p>
-        {{ form.submit() }}
-    </p>
-</form>
+<div class="login-container">
+<h1 id="login-title">Login</h1>
+    <form method="POST">
+        {{ form.hidden_tag() }}
+        <p class="login-label">
+            {{ form.email.label }}
+        </p>
+        <p>
+            {{ form.email(class="login-input") }}
+        </p>
+        <p class="login-label">
+            {{ form.password.label }}
+        </p>
+       <div class="password-container">
+            {{ form.password(class="login-input", id="password") }}
+            <button type="button" class="eye-btn" onclick="togglePassword('password', this)">👁️</button>
+        </div>
+        <div class="login-btn-container">
+            {{ form.submit(id="login-btn") }}
+        </div>
+    </form>
+</div>
+
 {% endblock %}

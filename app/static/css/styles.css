@@ -5,7 +5,18 @@ body {
     background-color: #51b738;
     font-family: 'Inter', sans-serif;
     color: white;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
+
+html {
+    height: 100%;
+}
+main {
+    flex: 1;
+}
+
 header {
     display: flex;
     flex-direction: row;
@@ -241,29 +252,35 @@ header {
     gap: 12px;
 }
 
-#register-title {
+#register-title, #login-title {
     text-align: center;
 }
 
-.register-label {
+.register-label, .login-label {
     font-size: 20px;
     font-weight: 300;
     margin-bottom: 5px;
 }
 
-.register-input {
+.register-input, .login-input {
     font-size: 20px;
     width: 100%;
     padding: 12px;
     border-radius: 10px;
     box-sizing: border-box;
+    padding: 12px 45px 12px 12px; /* extra right padding for eye */
 }
 
-#register-btn {
+#register-btn, #login-btn {
     font-size: 16px;
     padding: 12px 24px;
     border: none;
-    border-radius: 8px;
+    cursor: pointer;
+    text-align: center;
+    margin-top: 5px;
+    background-color: #456db3;
+    border-radius: 10px;
+    color: white;
     cursor: pointer;
 }
 
@@ -276,12 +293,7 @@ header {
     color: white;
 }
 
-#register-btn {
-    text-align: center;
-    margin-top: 5px;
-}
-
-.register-btn-container {
+.register-btn-container, .login-btn-container {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -307,12 +319,6 @@ header {
     width: 100%;
 }
 
-.register-input {
-    width: 100%;
-    padding: 12px 45px 12px 12px; /* extra right padding for eye */
-    box-sizing: border-box;
-}
-
 .eye-btn {
     position: absolute;
     right: 12px;
@@ -323,13 +329,6 @@ header {
     cursor: pointer;
     font-size: 18px;
     padding: 0;
-}
-
-#register-btn {
-    background-color: #456db3;
-    border-radius: 10px;
-    color: white;
-    cursor: pointer;
 }
 
 #register-btn:hover:not(:disabled) {
@@ -343,4 +342,22 @@ header {
 #register-btn:disabled {
     cursor: not-allowed;
     background-color: #1f417f;
+}
+
+.login-container {
+    display: flex;
+    flex-direction: column;
+    background-color: #8b45b3;
+    border-radius: 10px;
+    color: white;
+    width: 500px;
+    height: auto;
+    padding: 2rem;
+    margin: 2rem auto; /* Centers horizontally */
+    align-items: center;
+    gap: 12px;
+}
+
+#login-btn:hover {
+    background-color: #32579a;
 }
