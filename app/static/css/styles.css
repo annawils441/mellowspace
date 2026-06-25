@@ -324,3 +324,23 @@ header {
     font-size: 18px;
     padding: 0;
 }
+
+#register-btn {
+    background-color: #456db3;
+    border-radius: 10px;
+    color: white;
+    cursor: pointer;
+}
+
+#register-btn:hover:not(:disabled) {
+    background-color: #32579a;
+}
+
+#register-btn:active:not(:disabled) {
+    background-color: #456db3;
+}
+
+#register-btn:disabled {
+    cursor: not-allowed;
+    background-color: #1f417f;
+}

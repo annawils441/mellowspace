@@ -32,27 +32,25 @@
             <button type="button" class="eye-btn" onclick="togglePassword('confirm_password'), this">👁️</button>
         </div>
         <div class="checkbox-row">
-    <input type="checkbox" name="privacy" id="privacy" onchange="validateCheckboxes()">
-    <label for="privacy" class="register-txt">
-        I have read and accept the
-        <a target="_blank" href="https://www.webpagetest.org/blank.html">
+        <input type="checkbox" name="privacy" id="privacy" onchange="validateCheckboxes()">
+        <label for="privacy" class="register-txt">
+            I have read and accept the
+            <a target="_blank" href="https://www.webpagetest.org/blank.html">
             <u>Privacy Policy.</u>
-        </a>
-    </label>
-</div>
-<div class="checkbox-row">
-    <input type="checkbox" name="terms" id="terms" onchange="validateCheckboxes()">
-    <label for="terms" class="register-txt">
-        I have read and accept the 
-        <a target="_blank" href="https://www.webpagetest.org/blank.html">
-            <u>Terms and Conditions.</u>
-        </a>
-    </label>
-</div>
+            </a>
+         </label>
+        </div>
+        <div class="checkbox-row">
+            <input type="checkbox" name="terms" id="terms" onchange="validateCheckboxes()">
+             <label for="terms" class="register-txt">
+                I have read and accept the 
+                <a target="_blank" href="https://www.webpagetest.org/blank.html">
+                <u>Terms and Conditions.</u>
+                </a>
+            </label>
+            </div>
         <div class="register-btn-container">
-            <p class="register-btn" >
-                {{ form.submit(id="register-btn", disabled=True) }}
-            </p>
+            {{ form.submit(id="register-btn", disabled=True) }}
         </div>
     </form>
 </div>
