@@ -34,6 +34,7 @@ class MoodEntry(db.Model):
     moodID = db.Column(db.Integer, primary_key=True)
     userID = db.Column(db.Integer,db.ForeignKey("users.userID"), nullable=False)
     moodScore = db.Column(db.Integer, nullable=False)
+    notes = db.Column(db.Text)
     created_at = db.Column(db.DateTime, nullable=False, default=lambda: datetime.now(UTC))
 
 class Resource(db.Model):
