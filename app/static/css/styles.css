@@ -367,7 +367,180 @@ header {
     text-align: center;
 }
 
-.coping-strategies-paragraph, .wellbeing-library-paragraph, .mood-diary-paragraph, .legal-paragraph, .privacy-paragraph {
+.coping-strategies-paragraph, .wellbeing-library-paragraph, .legal-paragraph, .privacy-paragraph {
     font-size: 24px;
     text-align: center;
+}
+
+.mood-container {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    gap: 2rem;
+}
+
+.mood-card {
+    width: 130px;
+    padding: 20px;
+    cursor: pointer;
+    text-align: center;
+    transition: 0.2s;
+}
+
+.mood-card p {
+    font-size: 40px;
+}
+
+.mood-card h2 {
+    font-size: 30px;
+    text-align: center;
+}
+
+.mood-card:hover {
+    transform: translateY(-5px);
+    background-color: rgba(12,12,12,0.7);
+}
+
+.mood-card input{
+    display: none;
+}
+
+.mood-diary-subtitle {
+    margin-left: 1rem;
+}
+
+.notes-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 90%;
+    margin: 1rem auto;
+}
+
+.notes-subtitle {
+    font-size: 24px;
+}
+
+.notes-input {
+    width: 100%;
+    min-height: 200px;
+    padding: 16px;
+    font-family: 'Inter', sans-serif;
+    font-size: 18px;
+    color: #333;
+    border: none;
+    border-radius: 10px;
+    resize: vertical;
+    box-sizing: border-box;
+}
+
+.notes-input::placeholder {
+    color: #888;
+    font-style: italic;
+}
+
+.notes-input:focus {
+    outline: 3px solid #456db3;
+}
+
+.mood-submit-btn-container {
+    text-align: center;
+}
+
+#mood-submit-btn {
+    background-color: #8b45b3;
+    border-radius: 10px;
+    color: white;
+    font-size: 24px;
+    border: none;
+    cursor: pointer;
+}
+
+#mood-submit-btn:hover:not(:disabled) {
+    background-color: #8b008b;
+}
+
+#mood-submit-btn:active:not(:disabled) {
+    background-color: #663399;
+}
+
+#mood-submit-btn:disabled {
+    cursor: not-allowed;
+    background-color: #4b0082;
+}
+
+.mood-card.selected {
+    border: 3px solid white;
+    transform: translateY(-4px);
+    box-shadow: 0 0 15px rgba(255,255,255,0.4);
+}
+
+.calendar {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    display: grid;
+    grid-template-columns: repeat(7,1fr);
+    gap: 12px;
+    width: 900px;
+    margin: auto;
+}
+
+.day {
+    aspect-ratio: 1;
+    border-radius: 12px;
+    padding: 10px;
+    color: white;
+    background: #444;
+    transition: .2s;
+}
+
+.day:hover {
+    transform: scale(1.05);
+    cursor: pointer;
+}
+
+.mood-1 {
+    background: #ee5d6c;
+}
+
+.mood-2 {
+    background: #fb9062;
+}
+
+.mood-3 {
+    background: #c69500;
+}
+
+.mood-4 {
+    background: #51b738;
+}
+
+.mood-5 {
+    background: #ce4993;
+}
+
+.mood-popup {
+    display: none;
+    margin: 2rem auto;
+    width: 400px;
+    background: #8b45b3;
+    border-radius: 10px;
+    padding: 20px;
+    color: white;
+    text-align: center;
+}
+
+.close-btn {
+    float: right;
+}
+
+.day-emoji {
+    text-align: center;
+    font-size: 36px;
+}
+
+.month-title {
+    width: 900px;
+    margin: auto;
+    text-align: left;
 }

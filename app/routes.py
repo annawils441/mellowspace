@@ -8,9 +8,13 @@ from flask import (
 from app import db, bcrypt
 from .forms import (
     RegistrationForm,
-    LoginForm
+    LoginForm,
+    MoodDiaryForm
 )
-from .models import User
+from .models import (
+    User, 
+    MoodEntry
+)
 from flask_login import (
     login_user,
     logout_user,
@@ -18,6 +22,8 @@ from flask_login import (
     current_user,
     LoginManager
 ) 
+import calendar
+from datetime import date
 
 main = Blueprint("main", __name__) # Creates a blueprint for the routes
 login_manager = LoginManager()
@@ -83,10 +89,39 @@ def wellbeinglibrary():
 def copingstrategies():
     return render_template("coping-strategies.html")
 
-@main.route("/mooddiary")
+@main.route("/mooddiary", methods=["GET", "POST"])
 @login_required
 def mooddiary():
-    return render_template("mood-diary.html")
+    form = MoodDiaryForm()
+    today = date.today()
+    if form.validate_on_submit():
+        existing_entry = MoodEntry.query.filter(MoodEntry.userID == current_user.userID, db.func.date(MoodEntry.created_at) == today).first()
+        if existing_entry:
+            flash("You have already submitted a mood entry today.", "warning")
+            return redirect(url_for("main.mooddiary"))
+        entry = MoodEntry(
+            userID = current_user.userID,
+            moodScore = form.mood.data,
+            notes = form.notes.data
+        )
+        db.session.add(entry)
+        db.session.commit()
+        flash("Mood entry saved!", "success")
+        return redirect(url_for('main.mooddiary'))
+    cal = calendar.Calendar(firstweekday=0)
+    month_days = cal.monthdatescalendar(
+        today.year,
+        today.month
+    )
+    entries = MoodEntry.query.filter_by(userID=current_user.userID).all()
+    moods = {}
+    for entry in entries:
+        entry_date = entry.created_at.date() if hasattr(entry.created_at, 'date') else entry.created_at
+        moods[entry_date] = {
+            "score": entry.moodScore,
+            "notes": entry.notes
+        }
+    return render_template("mood-diary.html", form=form, month_days=month_days, moods=moods, month=today.month)
 
 @main.route("/legal")
 def legal():
