@@ -362,12 +362,12 @@ header {
     background-color: #32579a;
 }
 
-#coping-strategies-title, #wellbeing-library-title, #mood-diary-title {
+#coping-strategies-title, #wellbeing-library-title, #mood-diary-title, #legal-title, #privacy-title {
     font-size: 40px;
     text-align: center;
 }
 
-.coping-strategies-paragraph, .wellbeing-library-paragraph, .mood-diary-paragraph {
+.coping-strategies-paragraph, .wellbeing-library-paragraph, .mood-diary-paragraph, .legal-paragraph, .privacy-paragraph {
     font-size: 24px;
     text-align: center;
 }
