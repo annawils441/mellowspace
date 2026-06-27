@@ -2,6 +2,10 @@ window.onload = function () {
     selectMood()
 }
 
+document.addEventListener("DOMContentLoaded", function () {
+    initialiseEmotionSelector();
+});
+
 function validateCheckboxes() {
     const termsChecked = document.getElementById('terms').checked;
     const privacyChecked = document.getElementById('privacy').checked;
@@ -56,4 +60,25 @@ function showMood(dayElement) {
 
 function closePopup() {
     document.getElementById("mood-popup").style.display = "none";
+}
+
+function initialiseEmotionSelector() {
+    const emotionCards = document.querySelectorAll(".emotion-child-container");
+    const copingSections = document.querySelectorAll(".coping-section");
+    emotionCards.forEach(card => {
+        card.addEventListener("click", () => {
+            emotionCards.forEach(c => c.classList.remove("selected"));
+            card.classList.add("selected");
+            copingSections.forEach(section => {
+                section.classList.remove("active");
+            });
+            const emotion = card.dataset.emotion;
+            copingSections.forEach(section => {
+                const emotions = section.dataset.emotions;
+                if (emotions && emotions.split(" ").includes(emotion)) {
+                    section.classList.add("active");
+                }
+            });
+        });
+    });
 }

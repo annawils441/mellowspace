@@ -544,3 +544,137 @@ header {
     margin: auto;
     text-align: left;
 }
+
+.emotion-parent-container {
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+    justify-content: center;
+}
+
+.emotion-child-container {
+    width: 160px;
+    padding: 20px;
+    cursor: pointer;
+    text-align: center;
+    transition: 0.2s;
+    box-sizing: border-box;
+    border: 3px solid transparent; /* Leaves room for the border */
+}
+
+.emotion-child-container:hover {
+    transform: translateY(-4px);
+}
+.emotion-child-container.selected {
+    border-color: white;
+    box-shadow: 0 0 15px rgba(255,255,255,0.4);
+}
+
+
+.emotion-child-container p {
+    font-size: 40px;
+}
+
+.emotion-child-container h2 {
+    font-size: 20px;
+    font-size: 1vw;
+    text-align: center;
+}
+
+.coping-section {
+    display: none;
+    margin-top: 2rem;
+}
+
+.coping-section.active {
+    display: block;
+}
+
+#feelings-title {
+    margin: 1rem;
+}
+
+.strategy-group {
+    width: 1100px;
+    margin: 40px auto;
+    padding: 30px;
+    border-radius: 12px;
+}
+
+.strategy-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 24px;
+    margin-top: 25px;
+}
+
+.coping-strategy-card {
+    background: white;
+    color: black;
+    padding: 20px;
+    border-radius: 12px;
+    min-height: 170px;
+    transition: .25s;
+    text-align: center;
+}
+
+.coping-strategy-card:hover {
+    transform: translateY(-5px);
+}
+
+.repeat-box {
+    background: #456db3;
+    text-align: center;
+    margin-top: 1rem;
+    margin: auto;
+    width: 1100px;
+    font-size: 32px;
+}
+
+.grounding {
+    background: #8b45b3;
+}
+
+.breathing {
+    background: #456db3;
+}
+
+.physical {
+    background: #4b0082;
+}
+
+.gentle-movement {
+    background: #741b47;
+}
+
+.reach-out {
+    background: #2a9d8f;
+}
+
+.self-care {
+    background: #fb9062;
+}
+
+.distractions {
+    background: #ce4993;
+}
+
+.tired {
+    background: #1f417f;
+}
+
+.distress-tolerance {
+    background: #ee5d6c;
+}
+
+.understanding-anger {
+    background: #f4a261;
+}
+
+.healthy-outlets {
+    background: #c69500;
+}
+
+.coping-title {
+    margin: 1rem;
+}
