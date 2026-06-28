@@ -678,3 +678,8 @@ header {
 .coping-title {
     margin: 1rem;
 }
+
+.coping-link {
+    text-decoration: underline;
+    color: black;
+}
