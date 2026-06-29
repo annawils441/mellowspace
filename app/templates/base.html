@@ -9,7 +9,12 @@
     <body>
         <header>
             <div class="heading"><h1 class="ms-title">MellowSpace</h1></div>
-            <nav class="navbar">
+            <button class="hamburger-menu" onclick="toggleMenu()" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <nav class="navbar" id="navbar">
                 <a href="/" class="{% if request.endpoint == 'main.homepage' %}active{% endif %}">Home</a>
                 <a href="/wellbeinglibrary"class="{% if request.endpoint == 'main.wellbeinglibrary' %}active{% endif %}">Wellbeing Library</a>
                 <a href="/copingstrategies"class="{% if request.endpoint == 'main.copingstrategies' %}active{% endif %}">Coping Strategies</a>

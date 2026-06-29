@@ -1,9 +1,27 @@
 window.onload = function () {
-    selectMood()
+    selectMood();
 }
 
 document.addEventListener("DOMContentLoaded", function () {
     initialiseEmotionSelector();
+    const links = document.querySelectorAll(".navbar a");
+    // Closes the menu after clicking a link
+    links.forEach(link, () => {
+        link.addEventListener("click", () => {
+            document.getElementById("navbar").classList.remove("show");
+        });
+    });
+    //Closes the menu when clicking outside of it
+    document.addEventListener("click", function(event) {
+        const navbar = document.getElementById("navbar");
+        const hamburgerMenu = this.documentElement.querySelector(".hamburger");
+        if (
+            !navbar.contains(event.target) && 
+            !hamburgerMenu.contains(event.target)
+        ) {
+            navbar.classList.remove("show");
+        }
+    });
 });
 
 function validateCheckboxes() {
@@ -81,4 +99,8 @@ function initialiseEmotionSelector() {
             });
         });
     });
+}
+
+function toggleMenu() {
+    document.getElementById("navbar").classList.toggle("show");
 }
