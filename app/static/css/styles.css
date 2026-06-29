@@ -821,7 +821,8 @@ header {
 .strategy-group,
 .repeat-box,
 .calendar,
-.month-title {
+.month-title,
+.homepage-img-txt-box {
     max-width: 1140px;
     width: 90%;
 }
