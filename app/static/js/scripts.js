@@ -5,24 +5,65 @@ window.onload = function () {
 document.addEventListener("DOMContentLoaded", function () {
     initialiseEmotionSelector();
     const links = document.querySelectorAll(".navbar a");
-    // Closes the menu after clicking a link
-    links.forEach(link, () => {
+    links.forEach(link => {
         link.addEventListener("click", () => {
             document.getElementById("navbar").classList.remove("show");
         });
     });
-    //Closes the menu when clicking outside of it
-    document.addEventListener("click", function(event) {
+    document.addEventListener("click", function (event) {
         const navbar = document.getElementById("navbar");
-        const hamburgerMenu = this.documentElement.querySelector(".hamburger");
-        if (
-            !navbar.contains(event.target) && 
-            !hamburgerMenu.contains(event.target)
-        ) {
+        const hamburgerMenu = document.querySelector(".hamburger");
+        if (!navbar) return;
+        const clickedOutsideNavbar = !navbar.contains(event.target);
+        const clickedOutsideHamburger = !hamburgerMenu || !hamburgerMenu.contains(event.target);
+        if (clickedOutsideNavbar && clickedOutsideHamburger) {
             navbar.classList.remove("show");
         }
     });
+    document.querySelectorAll(".favourite-btn").forEach(button => {
+        button.addEventListener("click", async function (event) {
+            event.preventDefault();
+            const strategy_id = this.dataset.strategy;
+            const response = await fetch(`/toggle-favourite/${strategy_id}`, {
+                method: "POST"
+            });
+            const data = await response.json();
+            this.textContent = data.favourited ? "❤️" : "🤍";
+        });
+    });
+   const continueBtn = document.getElementById("continue-btn");
+    const passwordInput = document.getElementById("currentpassword");
+    function updateButtonState() {
+        if (!continueBtn || !passwordInput) return;
+        continueBtn.disabled = passwordInput.value.trim().length === 0;
+    }
+    if (continueBtn && passwordInput) {
+        updateButtonState();
+        passwordInput.addEventListener("input", updateButtonState);
+    }
 });
+
+async function checkPassword() {
+    const passwordInput = document.getElementById("currentpassword");
+    const continueBtn = document.getElementById("continue-btn");
+    const response = await fetch("/verify_password", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            password: passwordInput.value
+        })
+    });
+    const data = await response.json();
+    if (data.valid) {
+        showConfirmDelete();
+    } else {
+        alert("Incorrect password. Please try again.");
+        passwordInput.value = "";
+        continueBtn.disabled = true;
+    }
+}
 
 function validateCheckboxes() {
     const termsChecked = document.getElementById('terms').checked;
@@ -50,11 +91,12 @@ function selectMood() {
         card.classList.remove("selected");
     });
     const selected = document.querySelector('input[name="mood"]:checked');
+    const submitBtn = document.getElementById("mood-submit-btn");
     if (selected) {
         selected.closest(".mood-card").classList.add("selected");
-        document.getElementById("mood-submit-btn").disabled = false;
+        if (submitBtn) submitBtn.disabled = false;
     } else {
-        document.getElementById("mood-submit-btn").disabled = true;
+        if (submitBtn) submitBtn.disabled = true;
     }
 }
 
@@ -103,4 +145,66 @@ function initialiseEmotionSelector() {
 
 function toggleMenu() {
     document.getElementById("navbar").classList.toggle("show");
+}
+
+function dismissMessage(button) {
+    const flash = button.parentElement;
+    flash.style.opacity = "0";
+    flash.style.transform = "translateY(-10px)";
+    setTimeout(() => {
+        flash.remove();
+    }, 300);
+}
+
+function openEditPopup() {
+    document.getElementById("edit-popup").style.display = "flex";
+}
+
+function closeEditPopup() {
+    document.getElementById("edit-popup").style.display = "none";
+}
+
+function showUsernameForm() {
+    document.getElementById("username-form").style.display = "block";
+    document.getElementById("email-form").style.display = "none";
+}
+
+function showEmailForm() {
+    document.getElementById("email-form").style.display = "block";
+    document.getElementById("username-form").style.display = "none";
+}
+
+function openPasswordPopup() {
+    document.getElementById("change-pwd-popup").style.display = "flex";
+}
+
+function closePasswordPopup() {
+    document.getElementById("change-pwd-popup").style.display = "none";
+}
+
+function closeDeletePopup() {
+    document.getElementById("delete-account-popup").style.display = "none";
+}
+
+function openDeletePopup() {
+    document.getElementById("delete-account-popup").style.display = "flex";
+}
+
+function showConfirmDelete() {
+    document.getElementById("delete-confirmation").style.display = "flex";
+}
+
+function confirmDeleteStepCompleted() {
+    const el = document.getElementById("delete-confirmation");
+    return el && el.style.display === "flex";
+}
+
+
+function submitDeleteForm() {
+    const confirmationBox = document.getElementById("delete-confirmation");
+    if (confirmationBox.style.display !== "flex") {
+        alert("Please confirm deletion first.");
+        return;
+    }
+    document.getElementById("delete-form").submit();
 }

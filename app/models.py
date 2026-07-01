@@ -17,6 +17,10 @@ class User(UserMixin,db.Model):
     journalEntries = db.relationship("JournalEntry", backref="user", lazy=True) # Creates relationships
     mood_entries = db.relationship("MoodEntry", backref="user", lazy=True) # Creates relationships
 
+    current_streak = db.Column(db.Integer, default=0) # For streak logging the mood diary entries
+    longest_streak = db.Column(db.Integer, default=0) # For streak logging the mood diary entries
+    last_entry_date = db.Column(db.Date) # For streak logging the mood diary entries
+
     def get_id(self): # Tells the program to user userID instead of id for "get_id()"
         return str(self.userID)
     
@@ -44,3 +48,10 @@ class Resource(db.Model):
     resourceTitle = db.Column(db.String(100), nullable=False)
     resourceDesc = db.Column(db.Text, nullable=False) # Description
     resourceCat = db.Column(db.String(25), nullable=False) # Category
+
+class CopingFavourite(db.Model):
+    __tablename__ = "copingfavourites"
+
+    copingFavouriteID = db.Column(db.Integer, primary_key=True)
+    userID = db.Column(db.Integer, db.ForeignKey("users.userID"), nullable=False)
+    strategyID = db.Column(db.String(100), nullable=False)

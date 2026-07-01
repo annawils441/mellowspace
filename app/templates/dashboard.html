@@ -1,5 +1,215 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>Welcome {{ username }}</h1>
+<div class="dashboard">
+    <section class="welcome-card">
+        <h1>Hello, {{ username }} 👋</h1>
+        <h1>Welcome back to MellowSpace.</h1>
+    </section>
+    <section class="stats-grid">
+        <div class="stat-card dashboard-card">
+            <h3>Current Streak</h3>
+            <p>🔥<b>{{ current_user.current_streak }}</b></p>
+        </div>
+        <div class="stat-card  dashboard-card">
+            <h3>Longest Streak</h3>
+            <p>🏆<b>{{ current_user.longest_streak }}</b></p>
+        </div>
+        <div class="stat-card  dashboard-card">
+            <h3>Latest Mood</h3>
+            {% if latest_entry %}
+                <p>
+                    {% if latest_entry.moodScore == 1 %}
+                        😞 Very Low
+                    {% elif latest_entry.moodScore == 2 %}
+                        😟 Struggling
+                    {% elif latest_entry.moodScore == 3 %}
+                        😐 Okay
+                    {% elif latest_entry.moodScore == 4 %}
+                        🙂 Good
+                    {% elif latest_entry.moodScore == 5 %}
+                        🥰 Feeling Great
+                    {% endif %}
+                </p>
+                <p>{{ latest_entry.created_at.strftime("%d %B %Y") }}</p>
+            {% else %}
+                <p>You haven't logged a mood yet.</p>
+            {% endif %}
+        </div>
+    </section>
+    <section class="dashboard-grid">
+        <div class="summary-card  dashboard-card">
+            <h3>Mood Summary</h3>
+            <div class="summary-stat">
+                <h4>Average Mood This Month:</h4>
+                <p>{% if average_mood is not none %}
+                        {% if average_mood <= 1.5 %}
+                            {{ average_mood }} - 😞 Very Low
+                        {% elif average_mood <= 2.5 %}
+                            {{ average_mood }} - 😟 Struggling
+                        {% elif average_mood <= 3.5 %}
+                            {{ average_mood }} - 😐 Okay
+                        {% elif average_mood <= 4.5 %}
+                            {{ average_mood }} - 🙂 Good
+                        {% else %}
+                            {{ average_mood }} - 🥰 Feeling Great
+                        {% endif %}
+                    {% else %}
+                        No mood entries this month.
+                    {% endif %}
+                </p>
+            </div>
+            <div class="summary-stat">
+                <h4>Entries This Month:</h4>
+                <p>{{ entries_this_month  }}</p>
+            </div>
+            <div class="summary-stat">
+                <h4>Total Entries (ever):</h4>
+                <p>{{ total_entries }}</p>
+            </div>
+        </div>
+        <div class="tip-card  dashboard-card">
+            <h1>Tips</h1><!--insert jinja here-->
+            <p>- in development.. check soon!</p>
+        </div>
+        <div class="actions-card  dashboard-card">
+            <h1>Actions</h1><!--insert jinja here-->
+            <p>- in development.. check soon!</p>
+        </div>
+        <div class="recent-entries-card dashboard-card">
+            <h3>Recent Entries</h3>
+            {% if recent_entries is not none %}
+                {% for entry in recent_entries %}
+                    <div class="recent-entry">
+                        <div class="recent-date">
+                            {{ entry.created_at.strftime("%d %B %Y") }}
+                        </div>
+                        <div class="recent-mood">
+                            {% if entry.moodScore == 1 %}
+                                😞 Very Low
+                            {% elif entry.moodScore == 2 %}
+                                😟 Struggling
+                            {% elif entry.moodScore == 3 %}
+                                😐 Okay
+                            {% elif entry.moodScore == 4 %}
+                                🙂 Good
+                            {% elif entry.moodScore == 5 %}
+                                🥰 Feeling Great
+                            {% endif %}
+                        </div>
+                        {% if entry.notes is not none %}
+                        <div class="recent-notes">
+                            {{ entry.notes[:60] }}{% if entry.notes|length > 60 %}...{% endif %}
+                        </div>
+                        {% endif %}
+                    </div>
+                    
+                {% endfor %}
+            {% else %}
+                    <p>No mood entries yet.</p>
+            {% endif %}
+        </div>
+    </section>
+    <section class="account-card dashboard-card">
+        <h3>Account Settings</h3>
+        <div class="username-card">
+            <h4>Username</h4>
+            <p>{{ current_user.userName}}</p>
+        </div>
+        <div class="email-card">
+            <h4>Email</h4>
+            <p>{{ current_user.userEmail}}</p>
+        </div>
+        <div class="joined-card">
+            <h4>Joined</h4>
+            <p>{{ current_user.created_at.strftime("%d %B %Y") }}</p>
+        </div>
+        <div class="edit-card">
+            <h4><button id="edit-details-btn" type="button" onclick="openEditPopup()">Edit Details</button></h4>
+        </div>
+        <div class="password-card">
+            <h4><button id="change-password-btn" type="button" onclick="openPasswordPopup()">Change Password</button></h4>
+        </div>
+        <div class="delete-account-card">
+            <h4><button id="delete-btn" type="button" onclick="openDeletePopup()">Delete Account</button></h4>
+        </div>
+    </section>
+</div>
+<div id="edit-popup" class="popup">
+    <div class="popup-content">
+        <button type="button" class="close-btn" onclick="closeEditPopup()">X</button>
+        <h2>Edit Account Details</h2>
+        <div class="edit-options">
+            <button type="button" class="edit-options-btn" onclick="showUsernameForm()">Edit Username</button>
+            <button type="button" class="edit-options-btn" onclick="showEmailForm()">Edit Email</button>
+        </div>
+        <form method="POST" action="{{ url_for('main.edit_username') }}" id="username-form">
+            <label>New Username</label>
+            <input type="text" name="username" value="{{ current_user.userName }}">
+            <label>Enter Current Password</label>
+            <input type="password" name="current_password" required>
+            <button type="submit" class="submit-edit-btn">Save Changes</button>
+        </form>
+        <form method="POST" action="{{ url_for('main.edit_email') }}" id="email-form">
+            <label>New Email</label>
+            <input type="email" name="email" value="{{ current_user.userEmail }}">
+            <label>Enter Current Password</label>
+            <input type="password" name="current_password" required>
+            <button type="submit" class="submit-edit-btn">Save Changes</button>
+        </form>
+    </div>
+</div>
+<div id="change-pwd-popup" class="popup">
+    <div class="change-pwd-popup-content">
+        <button type="button" class="close-btn" onclick="closePasswordPopup()">X</button>
+        <h2>🔒</h2>
+        <h2>Change Password</h2>
+        <form method="POST" action="{{ url_for('main.change_password') }}" id="change-pwd-form">
+            <div class="pwd-form-group">
+                <label for="current-password">Enter Current Password</label>
+                <input type="password" id="current-password" name="current_password" required>
+            </div>
+            <div class="pwd-form-group">
+                <label for="new-password">Enter New Password</label>
+                <input type="password" id="new-password" name="new_password" required>
+            </div>
+            <div class="pwd-form-group">
+                <label for="confirm-password">Confirm New Password</label>
+                <input type="password" id="confirm-password" name="confirm_password" required>
+            </div>
+            <div class="password-requirements">
+                <p>Password must contain:</p>
+                <ul>
+                    <li>At least 8 characters</li>
+                </ul>
+            </div>
+            <button type="submit" class="save-btn">Update Password</button>
+        </form>
+    </div>
+</div>
+<div id="delete-account-popup" class="popup">
+    <div class="delete-popup-content">
+        <button type="button" class="close-btn" onclick="closeDeletePopup()">X</button>
+        <h2>🗑️</h2>
+        <h2>Delete Account</h2>
+        <p class="warning-txt">❗This action cannot be undone. Your account and all of your data will be permanently deleted.</p>
+        <form method="POST" action="{{ url_for('main.delete_account') }}" id="delete-form" onsubmit="return false;">
+            <div class="delete-form-group">
+                <label for="currentpassword">Enter Current Password</label>
+                <input type="password" id="currentpassword" name="current_password" required>
+            </div>
+            <div class="delete-buttons">
+                <button type="button" class="cancel-btn" onclick="closeDeletePopup()">Cancel</button>
+                <button type="button" id="continue-btn" onclick="checkPassword()" disabled>Continue</button>
+            </div>
+            <div id="delete-confirmation">
+                <p>Are you sure? This will permanently delete your account and all associated data.</p>
+                <div class="delete-confirm-buttons">
+                    <button type="button" class="delete-account-btn" onclick="submitDeleteForm()">Yes, permanently delete my account</button>
+                    <button type="button" onclick="closeDeletePopup()" class="cancel-btn">No, keep my account</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
 {% endblock %}

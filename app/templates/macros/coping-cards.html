@@ -1,0 +1,19 @@
+{% macro coping_card(title, text, strategy_id, favourite_ids) %}
+<div class="coping-strategy-card">
+    {% if current_user.is_authenticated %}
+    <div class="card-header">
+        <h3>{{ title | safe }}</h3>
+        <button class="favourite-btn" data-strategy="{{ strategy_id }}" type="button">
+            {% if strategy_id in favourite_ids %}
+                ❤️
+            {% else %}
+                🤍
+            {% endif %}
+        </button>
+    </div>
+        
+    {% endif %}
+    </form>
+    <p class="coping-txt">{{ text | safe }}</p>
+</div>
+{% endmacro %}

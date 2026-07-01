@@ -476,16 +476,6 @@ header {
     box-shadow: 0 0 15px rgba(255,255,255,0.4);
 }
 
-.calendar {
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-    display: grid;
-    grid-template-columns: repeat(7,1fr);
-    gap: 12px;
-    width: 900px;
-    margin: auto;
-}
-
 .day {
     aspect-ratio: 1;
     border-radius: 12px;
@@ -513,7 +503,7 @@ header {
 }
 
 .mood-4 {
-    background: #51b738;
+    background: #336e18;
 }
 
 .mood-5 {
@@ -610,6 +600,7 @@ header {
 }
 
 .coping-strategy-card {
+    position: relative;
     background: white;
     color: black;
     padding: 20px;
@@ -827,3 +818,493 @@ header {
     width: 90%;
 }
 
+
+
+.mood-layout {
+    display: grid;
+    grid-template-columns: 240px auto 240px;
+    align-items: start;
+    justify-content: center;
+    gap: 40px;
+    margin: 2rem auto;
+    width: fit-content;
+}
+
+.streak-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+}
+
+.layout-spacer {
+    width: 240px;
+}
+
+.calendar-wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.calendar {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 12px;
+    width: 900px;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+.current-streak-card, .longest-streak-card {
+    color: white;
+    height: 100px;
+    width: 150px;
+    border-radius: 12px;
+    padding: 20px;
+    box-sizing: border-box;
+    display: flex;
+    text-align: center;
+    font-size: 24px;
+    vertical-align: center;
+    align-items: center;
+}
+
+.current-streak-card {
+    background: #4b0082;
+}
+
+.longest-streak-card {
+    background: #741b47;
+}
+
+.flash-container {
+    width: 90%;
+    max-width: 900px;
+    margin: 20px auto;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.flash-message {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 20px;
+    border-radius: 12px;
+    color: white;
+    font-size: 18px;
+    font-weight: 500;
+    box-shadow: 0 4px 12px  rgba(0,0,0,0.15);
+    animation: fadeIn 0.35s ease;
+    text-align: center;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.flash-success {
+    background: #336e18;
+}
+
+.flash-warning {
+    background: #f4a261;
+    color: black;
+}
+
+.flash-danger {
+    background: #d9532f;
+}
+
+.flash-info {
+    background: #456db3;
+}
+
+.flash-close {
+    margin-left: auto;
+    background: transparent;
+    border: none;
+    color: inherit;
+    font-size: 22px;
+    cursor: pointer;
+    opacity: 0.8;
+    transition: opacity 0.2s;
+}
+
+.flash-close:hover {
+    opacity: 1;
+}
+
+.dashboard {
+    width: 1200px;
+    margin: 2rem auto;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 25px;
+}
+
+.dashboard-card {
+    background: #8b45b3;
+    border-radius: 15px;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.stat-card p {
+    text-align: center;
+}
+
+.summary-stat {
+    text-align: center;
+}
+
+.recent-entry {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid black;
+    text-align: center;
+}
+
+.recent-entry:last-child {
+    border-bottom: none;
+}
+
+.recent-date {
+    font-weight: 500;
+}
+
+.recent-mood {
+    font-size: 1.1rem;
+}
+
+.username-card,
+.email-card,
+.joined-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    text-align: center;
+}
+
+#change-password-btn,
+#delete-btn,
+#edit-details-btn {
+    color: white;
+    font-size: 20px;
+    border-radius: 12px;
+    cursor: pointer;
+    padding: 5px;
+    border: none;
+}
+
+#change-password-btn:hover,
+#delete-btn:hover,
+#edit-details-btn:hover {
+    transform: scale(1.05);
+}
+
+#change-password-btn {
+    background: #741b47;
+}
+
+#delete-btn {
+    background: #d9532f;
+}
+
+#edit-details-btn {
+    background: #336e18;
+}
+
+.edit-card,
+.password-card,
+.delete-account-card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.popup {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.45);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.popup-content, .change-pwd-popup-content {
+    width: 500px;
+    background: white;
+    max-width: 480px;
+    padding: 30px;
+    border-radius: 18px;
+    gap: 18px;
+    box-shadow: 0 10px 35px rgba(0,0,0,.2);
+    position: relative;
+    color: black;
+}
+
+.popup-content h2, .change-pwd-popup-content h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.popup-content label, .change-pwd-popup-content label {
+    display: block;
+    margin-top: 18px;
+    margin-bottom: 6px;
+    font-weight: 600;
+}
+
+.popup-content input, .change-pwd-popup-content input {
+    width: 100%;
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid #d9d9d9;
+    font-size: 15px;
+    box-sizing: border-box;
+}
+
+.popup-content input:focus , .change-pwd-popup-content input:focus {
+    outline: none;
+    border-color: #5b7fff;
+}
+
+.close-btn {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-size: 22px;
+}
+
+.edit-options {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.edit-options-btn {
+    flex: 1;
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    background: #5b7fff;
+    cursor: pointer;
+    transition: 0.25s;
+}
+
+.edit-options-btn:hover {
+    background: #4568e8;
+    transform: translateY(-2px);
+}
+
+#username-form,
+#email-form {
+    display: none;
+}
+
+.submit-edit-btn, .save-btn {
+    width: 100%;
+    margin-top: 20px;
+    padding: 14px;
+    border: none;
+    border-radius: 10px;
+    background: #5b7fff;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.25s;
+}
+
+.submit-edit-btn:hover, .save-btn:hover {
+    background: #4568e8;
+}
+
+#delete-confirmation {
+    display: none;
+    margin-top: 15px;
+}
+
+#delete-confirmation p {
+    text-align: left;
+}
+
+.coping-strategy-card {
+    position: relative;
+}
+
+.favourite-btn {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.favourite-btn:hover {
+    transform: scale(1.15);
+}
+
+.favourite-btn.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.favourite-btn:disabled {
+    pointer-events: none;
+}
+
+.card-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.delete-popup-content {
+    width: 520px;
+    max-width: 90%;
+    background: #fff;
+    color: black;
+    border-radius: 18px;
+    padding: 35px;
+    position: relative;
+    box-shadow: 0 10px 35px rgba(0,0,0,.2);
+}
+
+.delete-popup-content h2, .delete-popup-content p {
+    text-align: center;
+}
+
+.warning-txt {
+    background: #fff4f4;
+    border-left: 5px solid #d62828;
+    color: #8b0000;
+    padding: 16px;
+    border-radius: 10px;
+    line-height: 1.6;
+    margin: 20px 0 25px;
+}
+
+.delete-form-group {
+    margin-bottom: 25px;
+}
+
+.delete-form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.delete-form-group input {
+    width: 100%;
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid #d9d9d9;
+    box-sizing: border-box;
+}
+
+.delete-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 25px;
+}
+
+.cancel-btn {
+    background: #ececec;
+    color: #333;
+    border: none;
+    border-radius: 10px;
+    padding: 12px 22px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.cancel-btn:hover {
+    background: #dddddd;
+}
+
+.delete-confirm-btn {
+    background: #d62828;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 12px 22px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.delete-confirm-btn:hover {
+    background: #b71c1c;
+}
+
+#delete-confirmation {
+    display: none;
+    margin-top: 30px;
+    border-top: 1px solid #e5e5e5;
+    padding-top: 25px;
+}
+
+#delete-confirmation p {
+    color: #8b0000;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.delete-account-btn {
+    background: #8b0000;
+    color: white;
+    border: none;
+    padding: 14px 24px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.2s;
+}
+
+.delete-account-btn:hover {
+    background: #690000;
+}
+
+.delete-confirm-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+}

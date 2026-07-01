@@ -27,39 +27,49 @@
 {% elif month == 12 %}
     <h2 class="month-title">December</h2>
 {% endif %}
-<div class="calendar">
-    {% for week in month_days %}
-        {% for day in week %}
-            {% set mood = moods.get(day) %}
-            <div class="day {% if mood %}mood-{{ mood.score }}{% endif %}"
-            {% if mood %}
-                data-date="{{ day.strftime('%d %B %Y') }}"
-                data-score="{{ mood.score }}"
-                data-notes="{{ mood.notes or '' }}"
-                onclick="showMood(this)"
-            {% endif %}>
-                <div class="day-number">
-                    {{ day.day }}
-                </div>
-                {% if mood %}
-                    <div class="day-emoji">
-                        {% if mood.score == 1 %}
-                        😞
-                        {% elif mood.score == 2 %}
-                        😟
-                        {% elif mood.score == 3 %}
-                        😐
-                        {% elif mood.score == 4 %}
-                        🙂
-                        {% elif mood.score == 5 %}
-                        🥰
+<div class="mood-layout">
+    <div class="streak-container">
+        <div class="current-streak-card">🔥{{ current_user.current_streak }} Day Streak</div>
+        <div class="longest-streak-card">Longest Streak: 🔥 {{ current_user.longest_streak }}</div>
+    </div>
+    <div class="calendar-wrapper">
+        <div class="calendar">
+            {% for week in month_days %}
+                {% for day in week %}
+                    {% set mood = moods.get(day) %}
+                    <div class="day {% if mood %}mood-{{ mood.score }}{% endif %}"
+                    {% if mood %}
+                        data-date="{{ day.strftime('%d %B %Y') }}"
+                        data-score="{{ mood.score }}"
+                        data-notes="{{ mood.notes or '' }}"
+                        onclick="showMood(this)"
+                    {% endif %}>
+                        <div class="day-number">
+                            {{ day.day }}
+                        </div>
+                        {% if mood %}
+                            <div class="day-emoji">
+                                {% if mood.score == 1 %}
+                                😞
+                                {% elif mood.score == 2 %}
+                                😟
+                                {% elif mood.score == 3 %}
+                                😐
+                                {% elif mood.score == 4 %}
+                                🙂
+                                {% elif mood.score == 5 %}
+                                🥰
+                                {% endif %}
+                            </div>
                         {% endif %}
                     </div>
-                {% endif %}
-            </div>
-        {% endfor %}
-    {% endfor %}
+                {% endfor %}
+            {% endfor %}
+        </div>
+    </div>
+    <div class="layout-spacer"></div>
 </div>
+
 <div id="mood-popup" class="mood-popup">
     <button type="button" class="close-btn" onclick="closePopup()">X</button>
     <h2 id="popup-date"></h2>

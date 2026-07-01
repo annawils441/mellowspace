@@ -11,7 +11,11 @@
                     <h2 id="homepage-img-txt">A space for you - made to reduce the weight of emotions, one day at a time.</h2>
                 </div>
                 <div class="homepage-btn-box">
-                    <a href="{{ url_for('main.register') }}" id="get-started-btn">Get Started</a>                
+                    {% if current_user.is_authenticated %}
+                        <a href="{{ url_for('main.dashboard') }}" class="get-started-btn">Dashboard</a>
+                    {% else %}
+                        <a href="{{ url_for('main.register') }}" class="get-started-btn">Get Started</a> 
+                    {% endif %}               
                 </div>
             </div> 
         </div>

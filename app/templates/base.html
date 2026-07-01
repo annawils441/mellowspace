@@ -31,9 +31,14 @@
         <main>
             {% with messages = get_flashed_messages(with_categories=true) %}
                 {% if messages %}
-                    {% for category, message in messages %}
-                        <p>{{ message }}</p>
-                    {% endfor %}
+                    <div class="flash-container">
+                        {% for category, message in messages %}
+                            <div class="flash-message flash-{{ category }}">
+                               <p>{{ message }}</p> 
+                               <button type="button" class="flash-close" onclick="dismissMessage(this)">X</button>
+                            </div>
+                        {% endfor %}
+                    </div>
                 {% endif %}
             {% endwith %}
 
