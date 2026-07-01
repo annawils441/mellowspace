@@ -1308,3 +1308,36 @@ header {
     margin-top: 20px;
     flex-wrap: wrap;
 }
+
+.quick-actions-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
+
+.quick-action {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: white;
+    background: #6a0dad;
+    border-radius: 15px;
+    padding: 20px;
+    transition: transform 0.2s, background 0.2s;
+}
+
+.quick-action:hover {
+    background: #7b1fa2;
+    transform: translateY(-2px);
+}
+
+.quick-action {
+    font-size: 2rem;
+}
+
+.quick-action span {
+    margin-top: 10px;
+    font-size: 1rem;
+}

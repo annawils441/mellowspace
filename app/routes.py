@@ -98,7 +98,8 @@ def dashboard():
     recent_entries = (
         MoodEntry.query.filter_by(userID=current_user.userID).order_by(MoodEntry.created_at.desc()).limit(3).all()
     )
-    return render_template("dashboard.html", recent_entries=recent_entries,username=current_user.userName, latest_entry=latest_entry, total_entries=total_entries, entries_this_month=entries_this_month_count, average_mood=average_mood)
+    today_entry = MoodEntry.query.filter(MoodEntry.userID == current_user.userID, db.func.date(MoodEntry.created_at) == date.today()).first()
+    return render_template("dashboard.html", today_entry=today_entry,recent_entries=recent_entries,username=current_user.userName, latest_entry=latest_entry, total_entries=total_entries, entries_this_month=entries_this_month_count, average_mood=average_mood)
 
 @login_manager.user_loader
 def load_user(user_id):

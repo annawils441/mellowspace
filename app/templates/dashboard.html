@@ -69,12 +69,33 @@
             </div>
         </div>
         <div class="tip-card  dashboard-card">
-            <h1>Tips</h1><!--insert jinja here-->
+            <h3>Tips</h3><!--insert jinja here-->
             <p>- in development.. check soon!</p>
         </div>
         <div class="actions-card  dashboard-card">
-            <h1>Actions</h1><!--insert jinja here-->
-            <p>- in development.. check soon!</p>
+            <h3>Quick Actions</h3>
+            <div class="quick-actions-grid">
+                <a href="{{ url_for('main.mooddiary') }}" class="quick-action">
+                    😊
+                    {% if today_entry %}
+                        <span>View Mood Diary</span>
+                    {% else %}
+                        <span>Log Today's Mood</span>
+                    {% endif %}
+                </a>
+                <a href="{{ url_for('main.wellbeinglibrary') }}" class="quick-action">
+                    📖
+                    <span>Wellbeing Library</span>
+                </a>
+                <a href="{{ url_for('main.copingstrategies') }}" class="quick-action">
+                    🧠
+                    <span>Coping Strategies</span>
+                </a>
+                <a href="#account" class="quick-action">
+                    👤
+                    <span>Account Settings</span>  
+                </a>
+            </div>
         </div>
         <div class="recent-entries-card dashboard-card">
             <h3>Recent Entries</h3>
@@ -110,7 +131,7 @@
             {% endif %}
         </div>
     </section>
-    <section class="account-card dashboard-card">
+    <section class="account-card dashboard-card" id="account">
         <h3>Account Settings</h3>
         <div class="username-card">
             <h4>Username</h4>
