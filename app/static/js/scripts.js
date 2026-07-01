@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
     document.addEventListener("click", function (event) {
         const navbar = document.getElementById("navbar");
-        const hamburgerMenu = document.querySelector(".hamburger");
+        const hamburgerMenu = document.querySelector(".hamburger-menu");
         if (!navbar) return;
         const clickedOutsideNavbar = !navbar.contains(event.target);
         const clickedOutsideHamburger = !hamburgerMenu || !hamburgerMenu.contains(event.target);

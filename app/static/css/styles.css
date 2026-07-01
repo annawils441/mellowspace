@@ -730,13 +730,13 @@ header {
     }
     .calendar {
         width: 95%;
-        gap: 6px;
+        gap: 5px;
     }
     .day {
-        padding: 4px;
+        font-size: 12px;
     }
     .day-emoji {
-        font-size: 22px;
+        font-size: 20px;
     }
     .register-container,
     .login-container {
@@ -753,20 +753,19 @@ header {
         justify-content: center;
     }
     .homepage-img-txt-box{
-        font-size: 28px;
+        font-size: 24px;
+        padding: 10px;
     }
     .homepage-btn-box{
-        font-size: 24px;
+        font-size: 20px;
+        padding: 10px 20px;
     }
-
     .homepage-note-title{
         font-size: 24px;
     }
-
     .homepage-note-txt{
         font-size: 18px;
     }
-
     .homepage-quote-txt{
         font-size: 24px;
     }
@@ -803,7 +802,162 @@ header {
     .emotion-child-container h2 {
         font-size: 18px;
     }
+    .why-mellowspace,
+    .homepage-quote-box {
+        height: auto;
+        padding: 30px;
+    }
+    .dashboard {
+        width: 95%;
+    }
+    .stats-grid,
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+    .username-card,
+    .email-card,
+    .joined-card{
+        flex-direction:column;
+        gap:15px;
+    }
+    .popup-content,
+    .change-pwd-popup-content,
+    .delete-popup-content{
+        width:90%;
+        padding:20px;
+    }
+    .mood-card {
+        width: 110px;
+        padding: 10px;
+    }
+    .mood-card h2 {
+        font-size: 22px;
+    }
+    .mood-card p {
+        font-size: 32px;
+    }
+    .strategy-grid {
+        grid-template-columns: 1fr;
+    }
 }
+
+/* Large tablets and smaller laptops */
+@media (max-width:1024px) {
+    .dashboard {
+        width: 95%;
+    }
+    .strategy-group,
+    .repeat-box,
+    .why-mellowspace,
+    .homepage-quote-box{
+    width: 95%;
+    }
+    .calendar {
+        width: 100%;
+    }
+    .month-title {
+        width: 95%;
+    }
+    .mood-layout {
+        grid-template-columns: 1fr;
+        justify-items: center;
+    }
+    .layout-spacer {
+        display: none;
+    }
+    .dashboard-grid{
+        grid-template-columns: 1fr;
+    }
+
+    .stats-grid{
+        grid-template-columns: repeat(2,1fr);
+    }
+
+    .heading{
+        width: auto;
+    }
+}
+
+/* Phones */
+@media (max-width:480px) {
+    .heading img {
+        width: 220px;
+        height: auto;
+    }
+    header {
+        padding: 15px;
+    }
+    h1 {
+        font-size: 32px;
+    }
+    h2 {
+        font-size: 24px;
+    }
+    p {
+        font-size: 16px;
+    }
+    .homepage-img-txt-box{
+        font-size: 18px;
+    }
+    .homepage-btn-box{
+        font-size: 16px;
+    }
+    .homepage-note-title{
+        font-size: 22px;
+    }
+    .homepage-note-txt{
+        font-size: 16px;
+    }
+    .homepage-quote-txt{
+        font-size: 18px;
+    }
+    .register-container,
+    .login-container{
+        width: 95%;
+        padding: 20px;
+    }
+    .register-input,
+    .login-input{
+        font-size: 16px;
+    }
+    .mood-card {
+        width: 90%;
+    }
+    .mood-card h2 {
+        font-size: 18px;
+    }
+    .mood-card p {
+        font-size: 28px;
+    }
+    .emotion-child-container {
+        width: 100%;
+    }
+    .emotion-child-container h2 {
+        font-size: 16px;
+    }
+    #mood-submit-btn,
+    #register-btn,
+    #login-btn {
+        width: 100%;
+    }
+    .footer-right{
+        flex-direction: column;
+        gap: 25px;
+    }
+    .delete-buttons,
+    .delete-confirm-buttons{
+        flex-direction: column;
+    }
+    .cancel-btn,
+    .delete-account-btn,
+    .delete-confirm-btn{
+        width: 100%;
+    }
+    .quick-actions-grid{
+        grid-template-columns: 1fr;
+    }
+}
+
 
 /* Responsive large containers */
 .homepage-notes-container,
@@ -851,9 +1005,11 @@ header {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     gap: 12px;
-    width: 900px;
+    width: 100%;
+    max-width: 900px;
     padding-top: 1rem;
     padding-bottom: 1rem;
+    box-sizing: border-box;
 }
 
 .current-streak-card, .longest-streak-card {
@@ -946,11 +1102,13 @@ header {
 }
 
 .dashboard {
-    width: 1200px;
+    width: 95%;
+    max-width: 1200px;
     margin: 2rem auto;
     display: flex;
     flex-direction: column;
     gap: 30px;
+    box-sizing: border-box;
 }
 
 .stats-grid {
