@@ -68,9 +68,17 @@
                 <p>{{ total_entries }}</p>
             </div>
         </div>
-        <div class="tip-card  dashboard-card">
-            <h3>Tips</h3><!--insert jinja here-->
-            <p>- in development.. check soon!</p>
+        <div class="strategy-favourite-card  dashboard-card">
+            <h3>Favourite Strategies</h3>
+            {% if favourites is not none %}
+                {% for favourite in favourites %}
+                    <div class="favourite-strategy">
+                        <p>{{ favourite.strategyID }}</p>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p>No favourites yet.</p>
+            {% endif %}
         </div>
         <div class="actions-card  dashboard-card">
             <h3>Quick Actions</h3>

@@ -27,6 +27,8 @@ from flask_login import (
 ) 
 import calendar
 from datetime import date, timedelta
+from app.coping_strategies import COPING_STRATEGIES
+
 
 main = Blueprint("main", __name__) # Creates a blueprint for the routes
 login_manager = LoginManager()
@@ -99,7 +101,8 @@ def dashboard():
         MoodEntry.query.filter_by(userID=current_user.userID).order_by(MoodEntry.created_at.desc()).limit(3).all()
     )
     today_entry = MoodEntry.query.filter(MoodEntry.userID == current_user.userID, db.func.date(MoodEntry.created_at) == date.today()).first()
-    return render_template("dashboard.html", today_entry=today_entry,recent_entries=recent_entries,username=current_user.userName, latest_entry=latest_entry, total_entries=total_entries, entries_this_month=entries_this_month_count, average_mood=average_mood)
+    favourites = CopingFavourite.query.filter_by(userID=current_user.userID).all()
+    return render_template("dashboard.html", favourites=favourites,today_entry=today_entry,recent_entries=recent_entries,username=current_user.userName, latest_entry=latest_entry, total_entries=total_entries, entries_this_month=entries_this_month_count, average_mood=average_mood)
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -119,7 +122,7 @@ def copingstrategies():
         }
     else:
         favourite_ids = set()
-    return render_template("coping-strategies.html", favourite_ids=favourite_ids)
+    return render_template("coping-strategies.html", favourite_ids=favourite_ids, coping_strategies=COPING_STRATEGIES)
 
 @main.route("/mooddiary", methods=["GET", "POST"])
 @login_required

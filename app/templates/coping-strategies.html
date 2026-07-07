@@ -34,410 +34,44 @@
         <h2 class="emoji-txt">Overwhelmed</h2>
     </div>
 </div>
-<div id="a-s-o-emotions" class="coping-section" data-emotions="anxious stressed overwhelmed">
-    <h2 class="coping-title">Anxious/Stressed/Overwhelmed</h2>
+{% for emotion_key, emotion in coping_strategies.items() %}
+<div
+    id="{{ emotion_key }}"
+    class="coping-section"
+    data-emotions="{{ emotion.data_emotions }}"
+>
+    <h2 class="coping-title">
+        {{ emotion.title }}
+    </h2>
+    {% if emotion.show_repeat_message %}
     <div class="repeat-box">
-        <p class="repeat-txt">Repeat these techniques until the thoughts feel more manageable or till you're ready to try another technique.</p>
+        <p class="repeat-txt">
+            Repeat these techniques until the thoughts feel more manageable or until you're ready to try another technique.
+        </p>
     </div>
-    <div class="strategy-group grounding">
-        <h2 class="coping-subtitle">Grounding Techniques</h2>
+    {% endif %}
+    {% if emotion.remember_message %}
+        <div class="coping-strategy-card reminder-card">
+            <p class="coping-txt"><u>Remember</u> - Distraction skills are intended to provide temporary relief during difficult moments. Once emotions feel more manageable, it can be helpful to return to the situation and explore longer-term coping strategies.</p>
+        </div>
+    {% endif %}
+    {% for group in emotion.groups %}
+    <div class="strategy-group">
+        <h2 class="coping-subtitle">
+            {{ group.title }}
+        </h2>
         <div class="strategy-grid">
-            {{ coping_card(
-                "5,4,3,2,1",
-                "5 things you can see<br>4 things you can touch<br>3 things you can hear<br>2 things you can smell<br>1 thing you can taste",
-                "54321",
-                favourite_ids
-            ) }}
-
-            {{ coping_card(
-                "Mindful Observation",
-                "Mindfulness is the act of doing one thing at a time whilst only focusing on it and it alone. Observe the items around you, one by one.",
-                "mindful_obs",
-                favourite_ids
-            ) }}
-
-            {{ coping_card(
-                "Object Focus",
-                "Focus on one object and describe it in immense detail. What does it look, smell and feel like?",
-                "object_focus",
-                favourite_ids
-            ) }}
+            {% for strategy in group.strategies %}
+                {{ coping_card(
+                    strategy.title,
+                    strategy.text,
+                    strategy.id,
+                    favourite_ids
+                ) }}
+            {% endfor %}
         </div>
     </div>
-    <div class="strategy-group breathing">
-        <h2 class="coping-subtitle">Breathing Techniques</h2>
-        <div class="strategy-grid">
-            {{ coping_card(
-                "Box Breathing",
-                "Breathe in for 4, hold for 4 and exhale for 4.",
-                "box_breathing",
-                favourite_ids
-            ) }}
-
-            {{ coping_card(
-                "Paced Breathing",
-                "Breathe in for 4 seconds. Exhale for 6 seconds. Continue for several minutes.",
-                "paced_breathing",
-                favourite_ids
-            ) }}
-
-            {{ coping_card(
-                "Triangle Breathing",
-                "Breathe in for 3, hold for 3 and exhale for 3.",
-                "triangle_breathing",
-                favourite_ids
-            ) }}
-    </div>
+    {% endfor %}
 </div>
-   <div class="strategy-group physical">
-    <h2 class="coping-subtitle">Physical Wellbeing</h2>
-        <div class="strategy-grid">
-            {{ coping_card(
-                "Stretching",
-                "Stretching can help release physical tension that builds up throughout the day, particularly during periods of stress or anxiety. Taking just a few minutes to stretch can improve flexibility, encourage relaxation and provide an opportunity to pause and focus on the present moment.",
-                "stretching",
-                favourite_ids
-            ) }}
-            {{ coping_card(
-                "Sleep",
-                "Good quality sleep is essential for maintaining mental and physical health. Establishing a consistent sleep routine, creating a relaxing bedtime environment and limiting distractions before bed can help improve sleep quality and support emotional wellbeing.",
-                "sleep",
-                favourite_ids
-            ) }}
-            {{ coping_card(
-                "Walking",
-                "Walking is a simple yet effective way to support mental wellbeing. Whether it's a short walk around your neighbourhood or a longer walk in nature, regular movement can help reduce stress, improve mood and provide a break from overwhelming thoughts or daily pressures.",
-                "walking",
-                favourite_ids
-            ) }}
-            {{ coping_card(
-                "Hydration",
-                "Staying hydrated is an important part of self-care. Even mild dehydration can affect concentration, energy levels and mood. Setting reminders to drink water throughout the day can help you maintain healthy hydration habits and support your overall wellbeing.",
-                "hydration",
-                favourite_ids
-            ) }}
-        </div>
-   </div>
-</div>
-<div id="low" class="coping-section" data-emotions="low">
-    <h2 class="coping-title">Low</h2>
-    <div class="repeat-box">
-        <p class="repeat-txt">Repeat these techniques until the thoughts feel more manageable or till you're ready to try another technique.</p>
-    </div>
-    <div class="strategy-group gentle-movement">
-        <h2 class="coping-subtitle">Gentle Movement</h2>
-        <div class="strategy-grid">
-            {{ coping_card(
-                "Short Walk",
-                "Take a short walk outside.", 
-                "short_walk", 
-                favourite_ids
-            ) }}
-            {{ coping_card(
-                "Dance", 
-                "Dance to loud music.", 
-                "dance", 
-                favourite_ids
-            ) }}
-            {{ coping_card(
-                "Stretch",
-                "Stretch for 5 minutes.", 
-                "stretch", 
-                favourite_ids
-            ) }}
-            {{ coping_card(
-                "Fresh Air", 
-                "Get some fresh air.", 
-                "fresh_air",
-                 favourite_ids
-            ) }}
-        </div>
-    </div>
-    <div class="strategy-group reach-out">
-        <h2 class="coping-subtitle">Reach Out</h2>
-        <div class="strategy-grid">
-            {{ coping_card(
-                "Text or Call",
-                "Text or call a friend or relative.",
-                "text_or_call",
-                favourite_ids
-            ) }}
-            {{ coping_card(
-                "Support Group",
-                "Join a support group for like-minded individuals, such as a peer support group run by Mind.",
-                "support_group",
-                favourite_ids
-            ) }}
-            {{ coping_card(
-                "Support Network",
-                "Access your support network. Allow the people around you to be involved.",
-                "support_network",
-                favourite_ids
-            ) }}
-            {{ coping_card(
-                "Meet Someone",
-                "Meet someone for a chat or a coffee.",
-                "meet_someone",
-                favourite_ids
-            ) }}
-        </div>
-    </div>
-    <div class="strategy-group self-care">
-        <h2 class="coping-subtitle">Practice Self-Care</h2>
-        <div class="strategy-grid">
-            {{ coping_card(
-                "Rest",
-                "Rest can be productive too, allow yourself time off.",
-                "rest",
-                favourite_ids
-            )}}
-            {{ coping_card(
-                "Watch",
-                "Watch your favourite film and show compassion to yourself by allowing yourself to enjoy it.",
-                "watch",
-                favourite_ids
-            ) }}
-            {{ coping_card(
-                "Small Goals",
-                "Set small goals for your day from going on a walk to drinking a cup of water.",
-                "small_goals",
-                favourite_ids
-            ) }}
-            {{ coping_card(
-                "Read",
-                "Read a book that you know you will enjoy.",
-                "read",
-                favourite_ids
-            ) }}
-        </div>
-    </div>
-    <div class="strategy-group distractions">
-        <h2 class="coping-subtitle">Distractions</h2>
-        <div class="strategy-grid">
-            {{ coping_card(
-                "Pros and Cons",
-                "Write a pros and cons list for an action urge. Pros/Cons of acting on the urge then Pros/Cons of not acting on the urge.",
-                "pros_cons",
-                favourite_ids
-            ) }}
-            {{ coping_card(
-                "Opposite Action",
-                "Choose activities that encourage emotions different from the ones you're currently experiencing. Listen to happy music, look through happy photos, watch funny cat videos on YouTube.",
-                "opposite_action",
-                favourite_ids
-            ) }}
-            {{ coping_card(
-                "Temporary Solution",
-                "Temporarily set aside distressing thoughts when you are unable to address them immediately. Visualise placing worries in a box. Focus fully on a task/hobby.",
-                "temp",
-                favourite_ids
-            ) }}
-            {{ coping_card(
-                "Safe Physical Sensations",
-                "Use safe physical sensations to ground yourself in the present moment such as ice, a warm shower, light a candle.",
-                "safe_physical",
-                favourite_ids
-            ) }}
-            {{ coping_card(
-                "Engage",
-                "Engage in an activity that occupies your headspace such as baking, colouring, playing a game.",
-                "engage",
-                favourite_ids
-            ) }}
-            {{ coping_card(
-                "Kindness",
-                "Focus on helping someone else or doing something kind like helping a family member or sending love to a friend.",
-                "kindness",
-                favourite_ids
-            ) }}
-            {{ coping_card(
-                "Redirect Your Attention",
-                "Redirect your attention by engaging your mind. Complete a puzzle, count backwards from 100 in 7s, recite song lyrics.",
-                "redirect",
-                favourite_ids
-            ) }}
-            <div class="coping-strategy-card">
-                <p class="coping-txt"><u>Remember</u> - Distraction skills are intended to provide temporary relief during difficult moments. Once emotions feel more manageable, it can be helpful to return to the situation and explore longer-term coping strategies.</p>
-            </div>
-        </div>
-    </div>
-</div>
-<div id="tired" class="coping-section" data-emotions="tired">
-    <h2 class="coping-title">Tired</h2>
-    <div class="strategy-group tired">
-        <div class="strategy-grid">
-            {{ coping_card(
-                "Rest",
-                "<b>Rest without guilt</b> - Give yourself permission to rest. Taking breaks and allowing your body and mind to recover is an important part of wellbeing.",
-                "rest_without",
-                favourite_ids
-            ) }}
-            {{ coping_card(
-                "Natural Light",
-                "<b>Get natural light</b> - Exposure to daylight can help regulate your body's internal clock and improve alertness. Consider sitting near a window or spending a few minutes outside.",
-                "natural_light",
-                favourite_ids
-            ) }}
-            {{ coping_card(
-                "Nourishment",
-                "<b>Nourish your body</b> - Eating regular meals and snacks can help maintain energy throughout the day. Try to choose foods that provide sustained energy rather than quick bursts followed by crashes. See <a target='_blank' href='https://www.nhs.uk/live-well/eat-well/how-to-eat-a-balanced-diet/eating-a-balanced-diet/' class='coping-link'><u>here</u></a> for an NHS provided balanced diet guide.",
-                "nourish",
-                favourite_ids
-            ) }}
-            {{ coping_card(
-                "Redice Stimulation",
-                "Consider taking a short break from notifications, social media or other distractions that may be contributing to mental fatigue.",
-                "reduce",
-                favourite_ids
-            ) }}
-            {{ coping_card(
-                "Hydrate",
-                "Even mild dehydration can contribute to feelings of tiredness and difficulty concentrating. Try drinking a glass of water and keeping a bottle nearby throughout the day.",
-                "hydrate",
-                favourite_ids
-            ) }}
-            {{ coping_card(
-                "Gentle Movement",
-                "While intense exercise may feel overwhelming, light stretching or a short walk can sometimes help boost energy levels and reduce feelings of sluggishness.",
-                "gentle_movement",
-                favourite_ids
-            ) }}
-            {{ coping_card(
-                "One Small Task",
-                "When you're exhausted, focus on completing one simple task rather than tackling a long to-do list. Small achievements can help reduce feelings of overwhelm.",
-                "small_task",
-                favourite_ids
-            ) }}
-            {{ coping_card(
-                "Sleep Hygiene Check",
-                "Review your sleep routine. Consistent bedtimes, reduced screen time before bed and a comfortable sleep environment can support better quality rest.",
-                "sleep_hygiene",
-                favourite_ids
-            ) }}
-        </div>
-    </div>
-</div>
-<div id="angry" class="coping-section" data-emotions="angry">
-    <h2 class="coping-title">Angry</h2>
-    <div class="repeat-box">
-        <p class="repeat-txt">Repeat these techniques until the thoughts feel more manageable or till you're ready to try another technique.</p>
-    </div>
-    <div class="strategy-group distress-tolerance">
-         <h2 class="coping-subtitle">Distress Tolerance</h2>
-         <div class="strategy-grid">
-            {{ coping_card(
-                "STOP",
-                "<b>STOP Skill</b> -<br><b>S</b> - Stop what you're doing.<br><b>T</b> - Take a step back.<br><b>O</b> - Observe your thoughts, feelings and surroundings.<br><b>P</b> - Proceed mindfully.",
-                "stop",
-                favourite_ids
-            ) }}
-            {{ coping_card(
-                "Self Soothing",
-                "<b>Self Soothing</b> -<br>
-                - Listen to calming music.<br>
-                - Light a scented candle.<br>
-                - Wrap yourself in a soft blanket.<br>
-                - Enjoy a warm drink.",
-                "self_soothe",
-                favourite_ids
-            ) }}
-            {{ coping_card(
-                "Paced Breathing",
-                "<b>Paced Breathing</b> -<br>Inhale for 4 seconds.<br>Exhale for 6 seconds.<br>Continue for several minutes.",
-                "paced_breathing",
-                favourite_ids
-            ) }}
-            {{ coping_card(
-                "Pros & Cons",
-                "<b>Pros & Cons</b> -<br>
-                Before acting on anger, consider:<br>
-                - What are the benefits of reacting immediately?<br>
-                - What are the risks?<br>
-                - What are the benefits of waiting?<br>
-                - How might I feel about this tomorrow?",
-                "pros_and_cons",
-                favourite_ids
-            ) }}
-            {{ coping_card(
-                "Leave The Situation",
-                "<b>Leave the situation</b> -<br>Take time-out from it to allow yourself to regulate.",
-                "leave",
-                favourite_ids
-            ) }}
-            {{ coping_card(
-                "TIPP",
-                "<b>TIPP Skill</b> -<br> 
-                <b>T</b> - Temperature change<br>
-                <b>I</b> - Intense exercise<br>
-                <b>P</b> - Paced breathing<br>
-                <b>P</b> - Paired muscle relaxation",
-                "tipp",
-                favourite_ids
-            ) }}
-        </div>
-   </div>
-   <div class="strategy-group understanding-anger">
-        <h2 class="coping-subtitle">Understanding Anger</h2>
-        <div class="strategy-grid">
-            {{ coping_card(
-                "Anger Journal",
-                "<b>Anger Journal</b> -<br>
-                Write down:<br>
-                - What happened?<br>
-                - What thoughts went through your mind?<br>
-                - How intense was your anger (1-10)?<br>
-                - What did you need in that moment?<br>
-                This can help identify triggers and patterns over time.",
-                "journal",
-                favourite_ids
-            ) }}
-            {{ coping_card(
-                "Identify The Real Emotion",
-                "<b>Identify the real emotion</b> -<br>Anger is sometimes a 'secondary emotion.'<br>
-                Ask yourself:<br>
-                - Am I actually hurt?<br>
-                - Am I feeling rejected?<br>
-                - Am I embarrassed?<br>
-                - Am I feeling anxious?<br>
-                Understanding the underlying emotion can make it easier to address the problem.",
-                "identify",
-                favourite_ids
-            ) }}
-            {{ coping_card(
-                "Thought Reframing",
-                "<b>Thought Reframing</b> -<br>
-                Instead of:<br>
-                'They never listen to me.'<br>
-                Try:<br>
-                'I'm frustrated because I don't feel heard right now.'",
-                "reframing",
-                favourite_ids
-            ) }}
-        </div>
-   </div>
-    <div class="strategy-group healthy-outlets">
-        <h2 class="coping-subtitle">Healthy Outlets</h2>
-        <div class="strategy-grid">
-            {{ coping_card(
-                "Creative Expression",
-                "<b>Creative Expression</b> -<br>
-                    Express emotions through:<br>
-                    - Drawing<br>
-                    - Painting<br>
-                    - Writing<br>
-                    - Crafting<br>
-                    - Playing music<br>
-                    Creative activities can help process emotions in a safe way.",
-                "creative",
-                favourite_ids
-            ) }}
-            {{ coping_card(
-                "Music",
-                "<b>Music</b> -<br>Create a new playlist, maybe even listen to heavy metal.",
-                "music",
-                favourite_ids
-            ) }}
-        </div>
-    </div>
-</div>
+{% endfor %}
 {% endblock %}

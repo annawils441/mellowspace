@@ -1499,3 +1499,12 @@ header {
     margin-top: 10px;
     font-size: 1rem;
 }
+
+.reminder-card {
+    border-left: 5px solid #456db3;
+    border-right: 5px solid #456db3;
+    margin: 20px auto 0;
+    padding: 20px;
+    border-radius: 15px;
+    max-width: 500px;
+}
