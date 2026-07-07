@@ -141,6 +141,28 @@ function initialiseEmotionSelector() {
             });
         });
     });
+    const hash = window.location.hash.substring(1);
+    if (hash) {
+        const strategy = document.getElementById(hash);
+        if (strategy) {
+            const section = strategy.closest(".coping-section");
+            if (section) {
+                section.classList.add("active");
+                const emotion = section.id;
+                document.querySelectorAll(".emotion-child-container").forEach(card => {
+                    if (card.dataset.emotion === emotion) {
+                        card.classList.add("selected");
+                    } else {
+                        card.classList.remove("selected");
+                    }
+                });
+                strategy.scrollIntoView({
+                    behavior: "smooth",
+                    block: "center"
+                });
+            }
+        }
+    }
 }
 
 function toggleMenu() {

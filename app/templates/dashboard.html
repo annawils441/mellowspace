@@ -72,9 +72,11 @@
             <h3>Favourite Strategies</h3>
             {% if favourites is not none %}
                 {% for favourite in favourites %}
-                    <div class="favourite-strategy">
-                        <p>{{ favourite.strategyID }}</p>
-                    </div>
+                    {% set strategy = strategy_lookup[favourite.strategyID] %}
+                        <div class="favourite-strategy">
+                            <p class="favourite-emoji">❤️</p>
+                            <a href="{{ url_for('main.copingstrategies') }}#{{ strategy.id }}" class="favourite-strategy-link">{{ strategy.title }}</a>
+                        </div>
                 {% endfor %}
             {% else %}
                 <p>No favourites yet.</p>

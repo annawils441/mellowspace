@@ -1508,3 +1508,17 @@ header {
     border-radius: 15px;
     max-width: 500px;
 }
+
+.favourite-strategy {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 1rem;
+}
+
+.favourite-strategy-link {
+    cursor: pointer;
+    text-decoration: none;
+    color: white;
+}

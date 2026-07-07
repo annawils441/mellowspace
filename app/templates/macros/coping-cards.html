@@ -1,5 +1,5 @@
 {% macro coping_card(title, text, strategy_id, favourite_ids) %}
-<div class="coping-strategy-card">
+<div class="coping-strategy-card" id="{{ strategy_id }}" data-emotion="{{ emotion_key }}">
     {% if current_user.is_authenticated %}
     <div class="card-header">
         <h3>{{ title | safe }}</h3>
