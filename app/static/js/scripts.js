@@ -230,3 +230,13 @@ function submitDeleteForm() {
     }
     document.getElementById("delete-form").submit();
 }
+
+function showMoreFavourites() {
+   const viewMoreFavourites = document.getElementById("view-more-favourites-container");
+   viewMoreFavourites.style.display = "flex";
+}
+
+function hideMoreFavourites() {
+   const viewMoreFavourites = document.getElementById("view-more-favourites-container");
+   viewMoreFavourites.style.display = "none";
+}

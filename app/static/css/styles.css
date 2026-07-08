@@ -1142,12 +1142,14 @@ header {
 }
 
 .recent-entry {
-    display: flex;
-    justify-content: space-between;
+    display: grid;
     align-items: center;
+    grid-template-columns: 1fr auto;
+    grid-template-areas: "date mood" "notes notes";
+    gap: 6px 16px;
     padding: 12px 0;
+    justify-content: center;
     border-bottom: 1px solid black;
-    text-align: center;
 }
 
 .recent-entry:last-child {
@@ -1155,11 +1157,18 @@ header {
 }
 
 .recent-date {
-    font-weight: 500;
+    grid-area: date;
+    font-weight: 600;
 }
 
 .recent-mood {
+    grid-area: mood;
+    justify-self: end;
     font-size: 1.1rem;
+}
+
+.recent-notes {
+    grid-area: notes;
 }
 
 .username-card,
@@ -1521,4 +1530,64 @@ header {
     cursor: pointer;
     text-decoration: none;
     color: white;
+}
+
+.favourite-strategy-link-popup {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.fave-strategies-head-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#view-more-favourites-container {
+    background: rgba(0,0,0,.45);
+    color: black;
+}
+
+#view-more-favourites-container h3 {
+    text-align: center;
+}
+
+.view-more-favourites-popup-content {
+    background: white;
+    color: black;
+    width: 90%;
+    padding: 20px;
+    border-radius: 12px;
+    max-width: 550px;
+    position: relative;
+}
+
+.fave-strategies-popup-box {
+    gap: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 10px 0;
+}
+
+.fave-strategies-popup-head-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+#fave-strategies-btn {
+    background: #4b0082;
+    color: white;
+    border-radius: 12px;
+    padding: 5px;
+    cursor: pointer;
+    border: none;
+    font-size: 16px;
+}
+
+#fave-strategies-btn:hover {
+    transform: scale(1.05);
 }

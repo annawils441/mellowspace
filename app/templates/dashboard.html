@@ -69,9 +69,12 @@
             </div>
         </div>
         <div class="strategy-favourite-card  dashboard-card">
-            <h3>Favourite Strategies</h3>
+            <div class="fave-strategies-head-container">
+                <h3>Favourite Strategies</h3>
             {% if favourites is not none %}
-                {% for favourite in favourites %}
+                <h4><button id="fave-strategies-btn" type="button" onclick="showMoreFavourites()">View More</button></h4>
+            </div>
+                {% for favourite in five_favourites %}
                     {% set strategy = strategy_lookup[favourite.strategyID] %}
                         <div class="favourite-strategy">
                             <p class="favourite-emoji">❤️</p>
@@ -130,7 +133,7 @@
                         </div>
                         {% if entry.notes is not none %}
                         <div class="recent-notes">
-                            {{ entry.notes[:60] }}{% if entry.notes|length > 60 %}...{% endif %}
+                            {{ entry.notes[:40] }}{% if entry.notes|length > 40 %}...{% endif %}
                         </div>
                         {% endif %}
                     </div>
@@ -241,6 +244,23 @@
                 </div>
             </div>
         </form>
+    </div>
+</div>
+<div id="view-more-favourites-container" class="popup">
+    <div class="view-more-favourites-popup-content">
+        <div class="fave-strategies-popup-head-container">
+            <button type="button" class="close-btn" onclick="hideMoreFavourites()">X</button>
+            <h3>Favourite Strategies</h3>
+        </div>
+        <div class="fave-strategies-popup-box">
+            {% for favourite in favourites %}
+                {% set strategy = strategy_lookup[favourite.strategyID] %}
+                    <div class="favourite-strategy">
+                        <p class="favourite-emoji">❤️</p>
+                        <a href="{{ url_for('main.copingstrategies') }}#{{ strategy.id }}" class="favourite-strategy-link-popup">{{ strategy.title }}</a>
+                    </div>
+            {% endfor %}
+        </div>
     </div>
 </div>
 {% endblock %}

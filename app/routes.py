@@ -102,12 +102,13 @@ def dashboard():
     )
     today_entry = MoodEntry.query.filter(MoodEntry.userID == current_user.userID, db.func.date(MoodEntry.created_at) == date.today()).first()
     favourites = CopingFavourite.query.filter_by(userID=current_user.userID).all()
+    five_favourites = CopingFavourite.query.filter_by(userID=current_user.userID).limit(5).all()
     strategy_lookup = {}
     for emotion in COPING_STRATEGIES.values():
         for group in emotion["groups"]:
             for strategy in group["strategies"]:
                 strategy_lookup[strategy["id"]] = strategy
-    return render_template("dashboard.html", strategy_lookup=strategy_lookup,favourites=favourites,today_entry=today_entry,recent_entries=recent_entries,username=current_user.userName, latest_entry=latest_entry, total_entries=total_entries, entries_this_month=entries_this_month_count, average_mood=average_mood)
+    return render_template("dashboard.html", strategy_lookup=strategy_lookup,five_favourites=five_favourites,favourites=favourites,today_entry=today_entry,recent_entries=recent_entries,username=current_user.userName, latest_entry=latest_entry, total_entries=total_entries, entries_this_month=entries_this_month_count, average_mood=average_mood)
 
 @login_manager.user_loader
 def load_user(user_id):
